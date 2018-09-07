@@ -13,7 +13,7 @@ module.exports = {
 	// webpack-dev-server 配置命令
 	devServer: {
 		open: true, //自动打开浏览器
-		port: 8888, //运行的端口
+		port: 8088, //运行的端口
 		contentBase: 'src', //托管的根目录
 		hot: true //启用热更新(第一步)
 	},
