@@ -6,9 +6,9 @@
 		  </mt-swipe-item>
 		</mt-swipe>
 		<ul class="mui-table-view mui-grid-view mui-grid-9">
-	        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+	        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/newslist">
 	                <img src="images/4.png">
-	                <div class="mui-media-body">新闻资讯</div></a></li>
+	                <div class="mui-media-body">新闻资讯</div></router-link></li>
 	        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
 	                <img src="images/5.png">
 	                <div class="mui-media-body">图片分享</div></a></li>
@@ -42,7 +42,7 @@
 		},
 		methods: {
 			getlunbo: function () {
-				this.$http.get("http://localhost:8080/getlunbo").then(function (reslut) {
+				this.$http.get("getlunbo").then(function (reslut) {
 					if(reslut.body.code === 0) {
 						this.lunbolist = reslut.body.data;
 					}else {

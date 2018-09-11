@@ -36,7 +36,7 @@
 </script>
 <style scoped lang="less">
 	.app-container{
-		padding-top:40px;
+		padding:40px 0 50px;
 		overflow-x:hidden;
 	}
 	.v-enter{
@@ -53,5 +53,8 @@
 	}
 	.v-enter-active,.v-leave-active{
 		transition:all 0.5s ease;
+	}
+	.mui-bar-tab .mui-tab-item{
+		color:#5a5a5a;
 	}
 </style>

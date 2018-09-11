@@ -6,7 +6,8 @@ import HomeContainer from './components/tabber/HomeContainer.vue'
 import MemberContainer from './components/tabber/MemberContainer.vue'
 import ShopcarContainer from './components/tabber/ShopcarContainer.vue'
 import SearchContainer from './components/tabber/SearchContainer.vue'
-
+import NewsList from './components/news/NewsList.vue'
+import NewsInfo from './components/news/NewsInfo.vue'
 // 创建路由实例
 var router = new VueRouter({
 	routes:[ //配置路由规则
@@ -15,6 +16,8 @@ var router = new VueRouter({
 		{path:'/member',component:MemberContainer},
 		{path:'/shopcar',component:ShopcarContainer},
 		{path:'/search',component:SearchContainer},
+		{path:'/home/newslist',component:NewsList},
+		{path:'/home/newsinfo/:id',component:NewsInfo}
 	],
 	linkActiveClass:'mui-active' //路由选中高亮，默认的是router-link-active
 })
