@@ -2,12 +2,12 @@
 	<div class="commentBox">
 		<h3>发表评论</h3>
 		<hr>
-		<textarea placeholder="请发表您的评论(最多吐槽120字)" maxlength="120"></textarea>
-		<button class="push">发表评论</button>
+		<textarea placeholder="请发表您的评论(最多吐槽120字)" maxlength="120" v-model="msg"></textarea>
+		<button class="push" @click="postComment">发表评论</button>
 		<div class="ctmList">
-			<div class="ctmItem" v-for="(item,i) in comments" :key="item.username">
+			<div class="ctmItem" v-for="(item,i) in comments" :key="item.addtime">
 				<div class="ctmHead">
-					第{{ i+1 }}楼&nbsp;用户：{{ item.username }}&nbsp;发表时间：{{ item.addtime }}
+					第{{ i+1 }}楼&nbsp;用户：{{ item.username === "" ? "匿名用户" : item.username }}&nbsp;发表时间：{{ item.addtime | dateFn}}
 				</div>
 				<div class="ctmCon">
 					{{ item.content }}
@@ -18,11 +18,14 @@
 	</div>
 </template>
 <script>
+	// 导入mint-ui的提示框组件
+	import {Toast} from "mint-ui";
 	export default{
 		data: function () {
 			return {
-				pageindex:1,
-				comments:[]
+				pageindex:1,//评论页数
+				comments:[],//评论数据
+				msg:''
 			}
 		},
 		created: function () {
@@ -43,6 +46,21 @@
 			getMore: function () {
 				this.pageindex++;
 				this.getComment();
+			},
+			// 发表评论
+			postComment: function () {
+				if(this.msg.trim().length === 0) {
+					return Toast('内容不能为空！')
+				}
+				var obj = JSON.stringify({username:"",addtime:new Date(),content:this.msg.trim()});
+				this.$http.post("postcomment",obj).then(function(result) {
+					if(result.body.code === 0) {
+						this.comments.unshift(JSON.parse(obj));
+						this.msg = '';
+					}else {
+						Toast('评论失败!');
+					}
+				})
 			}
 		},
 		props:["id"]

@@ -13,7 +13,7 @@
 <script>
 	// 导入评论组件
 	import comment from '../subcomponents/comment.vue';
-
+	import {Toast} from 'mint-ui';
 	export default {
 		data: function () {
 			return {
