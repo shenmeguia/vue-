@@ -24,7 +24,6 @@
 	// 1.导入mui的js文件
 	import mui from '../../libs/mui/js/mui.min.js';
 	import {Toast} from 'mint-ui';
-
 	export default {
 		data: function () {
 			return {
@@ -40,9 +39,7 @@
 		// 如果要操作dom元素，最好在mounted钩子函数中操作
 		mounted: function () {
 			// 2.初始化滑动控件
-			mui(".mui-scroll-wrapper").scroll({
-			deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
-			});
+			mui('.mui-scroll-wrapper').scroll();
 		},
 		methods: {
 			getCategorys: function () {

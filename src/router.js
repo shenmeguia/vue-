@@ -31,7 +31,11 @@ var router = new VueRouter({
 		{path:'/home/goodsdesc/:id',component:GoodsDesc},
 		{path:'/home/goodscomment/:id',component:GoodsComment}
 	],
-	linkActiveClass:'mui-active' //路由选中高亮，默认的是router-link-active
+	linkActiveClass:'mui-active', //路由选中高亮，默认的是router-link-active
+	//解决拖动时多个页面互相影响的问题，当切换到新路由时，想要页面滚到顶部
+	scrollBehavior: function(to, from, savedPosition) {
+      return { x: 0, y: 0 }
+ 	}
 })
 
 // 将路由实例暴露出去

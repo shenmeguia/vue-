@@ -101,6 +101,9 @@
 	    text-overflow: ellipsis;
 	    color: #929292;
 	}
+	.mui-bar-tab .mui-active{
+    	color:#007aff;
+    }
 	.mui-bar-tab .mui-tab-items .mui-icon {
 	    top: 3px;
 	    width: 24px;
