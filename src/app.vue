@@ -1,7 +1,11 @@
 <template>
 	<div class="app-container">
 		<!-- 顶部 -->
-		<mt-header fixed title="vue案例"></mt-header>
+		<mt-header fixed title="vue案例">
+			<span slot="left">
+			    <mt-button icon="back" @click="goBack()" v-show="flag">返回</mt-button>
+			 </span>
+		</mt-header>
 
 		<!-- 中间路由 -->
 		<transition>
@@ -20,7 +24,7 @@
 			</router-link>
 			<router-link class="mui-tab-items" to="/shopcar">
 				<span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-					<span class="mui-badge" id="badge">0</span>
+					<span class="mui-badge" id="badge">{{ $store.getters.getAllCount }}</span>
 				</span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
@@ -32,7 +36,33 @@
 	</div>
 </template>
 <script>
-	
+	export default{
+		data: function () {
+			return {
+				flag:false
+			}
+		},
+		created: function () {
+			// 页面刚进来判断是不是在首页，在首页就隐藏返回按钮
+			this.flag = this.$route.path === '/home' ? false : true;
+		},
+		methods: {
+			// 点击返回后退
+			goBack: function () {
+				this.$router.go(-1);
+			}
+		},
+		// 监听路由的变化，在首页就需要隐藏返回按钮
+		watch: {
+			"$route.path": function (newVal,oldVal) {
+				if(newVal === '/home') {
+					this.flag = false;
+				}else {
+					this.flag = true;
+				}
+			}
+		}
+	}
 </script>
 <style scoped lang="less">
 	.app-container{

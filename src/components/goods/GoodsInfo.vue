@@ -25,7 +25,7 @@
 					</p>
 					<mt-button type="primary" size="small">立即购买</mt-button>
 					<!-- 加入购物车涉及到 numbox子组件向父组件传值-->
-					<mt-button type="danger" size="small" @click="ballFlag = !ballFlag">加入购物车</mt-button>
+					<mt-button type="danger" size="small" @click="addToCar">加入购物车</mt-button>
 				</div>
 			</div>
 		</div>
@@ -122,6 +122,20 @@
 			getCount: function (num) {
 				//参数num就是numbox子组件传递过来的值
 				this.count = num;
+			},
+			addToCar: function () {
+				this.ballFlag = !this.ballFlag;
+				// 每一条内容大概是{id:商品id，count:购买数量，price:单价，selected：true(是否选中)}
+				var goodscar = {
+					id: this.id,
+					count: this.count,
+					price: this.goodsinfo.nowprice,
+					des: this.goodsinfo.des,
+					src: this.goodsinfo.imgsrc,
+					selected: true
+				};
+				// 调用vuex实例的mutations中的方法，将商品购买信息保存到state中，实现数据共享
+				this.$store.commit('addCar',goodscar);
 			}
 		},
 		components:{
